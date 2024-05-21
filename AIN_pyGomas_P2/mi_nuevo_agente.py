@@ -23,6 +23,8 @@ class BDIDrunkenMonkey(BDIFieldOp):
         
         @actions.add(".asignarCoordenadas", 0)
         def _asignar_coordenadas(agent, term, intention):
+            posFlag = self.bdi.get_belief(Belief.FLAG)
+
             u = lambda x: x^2
             
             Belief.FLAG
