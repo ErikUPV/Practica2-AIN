@@ -15,16 +15,18 @@ import math
 
 from pygomas.agents.agent import LONG_RECEIVE_WAIT
 
-class BDIDrunkenMonkey(BDIFieldOp):
 
-      def distancia(x1,x2):
-          return math.sqrt((x1[0]-x2[0])^2 + (x1[1]-x2[1])^2)
+def distancia(x1,x2):
+    return math.sqrt((x1[0]-x2[0])^2 + (x1[1]-x2[1])^2)
+
+class BDILider(BDIFieldOp):
+
       
       def add_custom_actions(self, actions):
         super().add_custom_actions(actions)
         
-        @actions.add(".asignarCoordenadas", 0)
-        def _asignar_coordenadas(agent, term, intention):
+        @actions.add_function(".asignarCoordenadas", 0)
+        def _asignarCoordenadas():
             # Calculamods posición de la BANDERA
             flag_pos = self.bdi.get_belief(Belief.FLAG)
             # Esquinas cuadrado imaginario
@@ -39,11 +41,15 @@ class BDIDrunkenMonkey(BDIFieldOp):
             for e in esquinas:
                 distancias.append(distancia(e,baseEnemiga))
             
-            esquina_lejana = esquinas[distancias.index(min(distancias))]
+            start_point = esquinas[distancias.index(max(distancias))]
+            contigua_siguiente = esquinas[(distancias.index(max(distancias))+1)%len(esquinas)]
+            contigua_anterior = esquinas[(distancias.index(max(distancias))-1)%len(esquinas)]
                 
-            posiciones = [(),
-                          (),
-                          esquina_lejana,   # Agente Esquina
-                          (),
-                          ()]
+            posiciones = [contigua_anterior,
+                          ((contigua_anterior[0]+start_point[0])/2, (contigua_anterior[1]+start_point[1])/2),
+                          contigua_siguiente,   
+                          ((contigua_siguiente[0]+start_point[0])/2, (contigua_siguiente[1]+start_point[1])/2),
+                          start_point]          # Agente Esquina
             
+            return tuple(posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4])
+              

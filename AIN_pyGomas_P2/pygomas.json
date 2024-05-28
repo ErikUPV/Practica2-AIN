@@ -19,10 +19,10 @@
             "asl": "bdimedic.asl"
         },
          {
-            "rank": "BDIFieldOp",
-            "name": "fieldop_axis_ebellob",
+            "rank": "lider.BDILider",
+            "name": "lider_axis_ebellob",
             "password": "secret",
-            "asl": "bdifieldop.asl"
+            "asl": "bdileader.asl"
         }
     ],
      "allied": [
