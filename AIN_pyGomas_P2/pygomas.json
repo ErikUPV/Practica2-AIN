@@ -5,6 +5,12 @@
     "service": "service_ebellob",
     "service_password": "secret",
     "axis": [
+        {
+            "rank": "lider.BDILider",
+            "name": "lider_axis_ebellob",
+            "password": "secret",
+            "asl": "bdileader.asl"
+        },
 		{
             "rank": "BDISoldier",
             "name": "axis_ebellob",
@@ -17,13 +23,8 @@
             "name": "medic_axis_ebellob",
             "password": "secret",
             "asl": "bdimedic.asl"
-        },
-         {
-            "rank": "lider.BDILider",
-            "name": "lider_axis_ebellob",
-            "password": "secret",
-            "asl": "bdileader.asl"
         }
+         
     ],
      "allied": [
 		{

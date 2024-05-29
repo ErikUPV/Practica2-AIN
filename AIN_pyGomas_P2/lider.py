@@ -17,26 +17,28 @@ from pygomas.agents.agent import LONG_RECEIVE_WAIT
 
 
 def distancia(x1,x2):
-    return math.sqrt((x1[0]-x2[0])^2 + (x1[1]-x2[1])^2)
 
-class BDILider(BDIFieldOp):
+    return int(math.sqrt((x1[0]-x2[0])**2 + (x1[1]-x2[1])**2))
+
+class BDILider(BDITroop):
 
       
       def add_custom_actions(self, actions):
         super().add_custom_actions(actions)
         
-        @actions.add_function(".asignarCoordenadas", 0)
-        def _asignarCoordenadas():
+        @actions.add_function(".asignarCoordenadas",(tuple))
+        def _asignarCoordenadas(flag_pos):
             # Calculamods posición de la BANDERA
-            flag_pos = self.bdi.get_belief(Belief.FLAG)
+
+            
             # Esquinas cuadrado imaginario
             tamaño_cuadrado = 20
-            esquinas = [(flag_pos-tamaño_cuadrado,flag_pos+tamaño_cuadrado),  # Esquina Izquiera Superior
-                        (flag_pos+tamaño_cuadrado,flag_pos+tamaño_cuadrado),  # Esquina Derecha Superior
-                        (flag_pos+tamaño_cuadrado,flag_pos-tamaño_cuadrado),  # Esquina Derecha Inferior
-                        (flag_pos-tamaño_cuadrado,flag_pos-tamaño_cuadrado)]  # Esquina Izquierda Inferior
+            esquinas = [(flag_pos[0]-tamaño_cuadrado,flag_pos[2]+tamaño_cuadrado),  # Esquina Izquiera Superior
+                        (flag_pos[0]+tamaño_cuadrado,flag_pos[2]+tamaño_cuadrado),  # Esquina Derecha Superior
+                        (flag_pos[0]+tamaño_cuadrado,flag_pos[2]-tamaño_cuadrado),  # Esquina Derecha Inferior
+                        (flag_pos[0]-tamaño_cuadrado,flag_pos[2]-tamaño_cuadrado)]  # Esquina Izquierda Inferior
             
-            baseEnemiga = (map.allied_base.get_ini_x(),map.allied_base.get_ini_z())
+            baseEnemiga = (self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z())
             distancias = []
             for e in esquinas:
                 distancias.append(distancia(e,baseEnemiga))
@@ -51,5 +53,26 @@ class BDILider(BDIFieldOp):
                           ((contigua_siguiente[0]+start_point[0])/2, (contigua_siguiente[1]+start_point[1])/2),
                           start_point]          # Agente Esquina
             
-            return tuple(posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4])
+            posiciones_res = []
+            
+            for i, posicion in enumerate(posiciones):
+                posiciones[i] = ([int(posicion[0]), 0, int(posicion[1])])
+                
+            
+            
+            for posicion in posiciones:
+                x,_,z = posicion
+                parte1 = True
+                while not self.map.can_walk(x, z):
+                    if parte1:
+                        x += 1
+                        parte1 = False
+                    else:
+                        z += 1
+                        parte1 = True
+                posiciones_res.append((x, 0, z))
+            
+#            self.bdi.set_belief(Belief.DESTINATION, posiciones_res[-1])
+                        
+            return tuple(posiciones_res)
               
