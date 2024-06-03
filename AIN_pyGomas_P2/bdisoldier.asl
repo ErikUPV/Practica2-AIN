@@ -10,17 +10,25 @@
   // +patroll_point(0);
   // .print("Got control points");
   // .wait(500);
+  .register_service("general");
   .get_service("general").
 
 
 +general(L)
   <-
-  .print("Estoy en general").
+  .print("Estoy en general", L).
 
-+ir_a(Pos):
++ir_a(Pos)
   <-
   .print("Soy soldier, Voy a ", Pos);
+  +patrullando;
   .goto(Pos).
+
++target_reached(T): patrullando
+  <-
+  ?flag(F);
+  .look_at(F).
+
 
 
 // +target_reached(T): patrolling & team(200)

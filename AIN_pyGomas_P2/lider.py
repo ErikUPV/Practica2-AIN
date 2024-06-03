@@ -20,6 +20,7 @@ def distancia(x1,x2):
 
     return int(math.sqrt((x1[0]-x2[0])**2 + (x1[1]-x2[1])**2))
 
+
 class BDILider(BDITroop):
 
       
@@ -33,7 +34,7 @@ class BDILider(BDITroop):
             
             # Esquinas cuadrado imaginario
             tamaño_cuadrado = 20
-            esquinas = [(flag_pos[0]-tamaño_cuadrado,flag_pos[2]+tamaño_cuadrado),  # Esquina Izquiera Superior
+            esquinas = [(flag_pos[0]-tamaño_cuadrado,flag_pos[2]+tamaño_cuadrado),  # Esquin a Izquiera Superior
                         (flag_pos[0]+tamaño_cuadrado,flag_pos[2]+tamaño_cuadrado),  # Esquina Derecha Superior
                         (flag_pos[0]+tamaño_cuadrado,flag_pos[2]-tamaño_cuadrado),  # Esquina Derecha Inferior
                         (flag_pos[0]-tamaño_cuadrado,flag_pos[2]-tamaño_cuadrado)]  # Esquina Izquierda Inferior
@@ -65,16 +66,50 @@ class BDILider(BDITroop):
                 parte1 = True
                 while not self.map.can_walk(x, z):
                     if parte1:
-                        x += 2
+                        x += 1
                         parte1 = False
                     else:
-                        z += 2
+                        z += 1
                         parte1 = True
-                    
                 posiciones_res.append((x, 0, z))
-            can_walk = [self.map.can_walk(x, z) for x, _, z in posiciones_res]
-            print([item for item in zip(posiciones_res, can_walk)])
+            
+            posicion_lider = posiciones_res[-1]
+            posiciones_res.remove(posicion_lider)
+
+
+            coords = [(110, 0, 80),(110, 0, 150)]
+            
+            coords_res =[] 
+            for coord in coords:
+                x,_,z = coord
+                parte1 = True
+                while not self.map.can_walk(x, z):
+                    if parte1:
+                        x += 1
+                        parte1 = False
+                    else:
+                        z += 1
+                        parte1 = True
+                coords_res.append((x, 0, z))
+
+            coords_res += coords_res
+            coords_res.append(coords_res[0])
+
+            posiciones_res += coords_res
+            posiciones_res.append(posicion_lider)
+            print(posiciones_res)
+            
+            
+            
 #            self.bdi.set_belief(Belief.DESTINATION, posiciones_res[-1])
                         
             return tuple(posiciones_res)
               
+        @actions.add_function(".getPatrullas",(tuple))
+        def _getPatrullas(flag_pos):
+            baseEnemiga = (self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z())
+            
+             
+                
+
+            
