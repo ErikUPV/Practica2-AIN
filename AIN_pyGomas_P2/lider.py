@@ -65,13 +65,15 @@ class BDILider(BDITroop):
                 parte1 = True
                 while not self.map.can_walk(x, z):
                     if parte1:
-                        x += 1
+                        x += 2
                         parte1 = False
                     else:
-                        z += 1
+                        z += 2
                         parte1 = True
+                    
                 posiciones_res.append((x, 0, z))
-            
+            can_walk = [self.map.can_walk(x, z) for x, _, z in posiciones_res]
+            print([item for item in zip(posiciones_res, can_walk)])
 #            self.bdi.set_belief(Belief.DESTINATION, posiciones_res[-1])
                         
             return tuple(posiciones_res)
