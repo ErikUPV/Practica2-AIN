@@ -94,7 +94,7 @@ class BDILider(BDITroop):
 
             coords_res += coords_res
             coords_res.append(coords_res[0])
-
+            
             posiciones_res += coords_res
             posiciones_res.append(posicion_lider)
             print(posiciones_res)

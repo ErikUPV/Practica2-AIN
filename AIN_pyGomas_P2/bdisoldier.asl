@@ -21,13 +21,50 @@
 +ir_a(Pos)
   <-
   .print("Soy soldier, Voy a ", Pos);
+  +mi_destino(Pos);
   +patrullando;
   .goto(Pos).
 
 +target_reached(T): patrullando
   <-
-  ?flag(F);
-  .look_at(F).
+//  ?flag(F);
+//  .look_at(F).
+    .getBaseEnemiga(T,[X1,Y1,Z1]);
+    +base_enemiga([X1,Y1,Z1])
+    ?position([X2,Y2,Z2]);
+    .goto([X1,Y1,Z2]);
+    -patrullando;
+    +a_base_enemiga.
+
++target_reached: a_base_enemiga
+  <-
+  ?base_enemiga(Pos);
+  look_at(Pos).
+
++enemies_in_fov(ID,Type,Angle,Distance,Health,Position)
+  <-
+  -patrullando;
+  .shoot(3,Position);
+  .look_at(Position);
+  .goto(Position);
+  .print("DISPAROO!");
+  +shooting.
+
+//  -+siguiendo(2000).
+
+
++target_reached: shooting
+  <-
+  -shooting;
+  +volver_patrullar
+
++volver_patrullar
+  <-
+  -volver_patrullar;
+  ?mi_destino(Pos);
+  .goto(Pos);
+  +patrullando;
+
 
 
 

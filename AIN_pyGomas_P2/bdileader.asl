@@ -16,7 +16,14 @@
 
   
   
-
++enemies_in_fov(ID,Type,Angle,Distance,Health,Position): not shooting
+  <-
+  -patrullando;
+  .shoot(3,Position);
+  .look_at(Position);
+  .goto(Position);
+  +shooting;
+  +siguiendo.
 
 +general(L): team(200)
   <-
