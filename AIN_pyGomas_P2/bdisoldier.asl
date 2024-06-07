@@ -30,7 +30,7 @@
 //  ?flag(F);
 //  .look_at(F).
     .getBaseEnemiga(T,[X1,Y1,Z1]);
-    +base_enemiga([X1,Y1,Z1])
+    +base_enemiga([X1,Y1,Z1]);
     ?position([X2,Y2,Z2]);
     .goto([X1,Y1,Z2]);
     -patrullando;
@@ -56,14 +56,14 @@
 +target_reached: shooting
   <-
   -shooting;
-  +volver_patrullar
+  +volver_patrullar.
 
 +volver_patrullar
   <-
   -volver_patrullar;
   ?mi_destino(Pos);
   .goto(Pos);
-  +patrullando;
+  +patrullando.
 
 
 
