@@ -98,7 +98,7 @@ class BDILider(BDITroop):
             posiciones_res += coords_res
             posiciones_res.append(posicion_lider)
             print(posiciones_res)
-            
+            print(len(posiciones_res))
             
             
 #            self.bdi.set_belief(Belief.DESTINATION, posiciones_res[-1])

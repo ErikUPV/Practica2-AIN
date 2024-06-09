@@ -45,7 +45,6 @@
   <-
   -patrullando;
   .shoot(3,Position);
-  .look_at(Position);
   .goto(Position);
   .print("DISPAROO!");
   +shooting.

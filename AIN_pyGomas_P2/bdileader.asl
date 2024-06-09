@@ -30,10 +30,12 @@
   ?coordenadas_agentes(C);
   .wait(500);
   .print("Voy a enviar destinos", L, C);
+  .length(L,Pito);
+  .print(Pito);
   +enviar_destinos(L, C).
 
 
-+enviar_destinos([Ag | L1], [C | L2]): .length(L1, Len1) & .length(L2, Len2) & Len1 > 0 & Len2 > 0
++enviar_destinos([Ag | L1], [C | L2]): .length(L1, Len1) & .length(L2, Len2) & Len1 >= 0 & Len2 >= 0
   <-
   .print("Envio destino ", Ag, C);
   .send(Ag, tell, ir_a(C));

@@ -30,7 +30,6 @@ class BDIMiSoldado(BDITroop):
         @actions.add_function(".getBaseEnemiga",(tuple))
         def _getBaseEnemiga(filler):
             
-            
             baseEnemiga = (self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z())
             return (baseEnemiga[0], 0, baseEnemiga[1])
             
