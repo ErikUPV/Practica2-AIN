@@ -13,12 +13,12 @@
   .goto([X, Y, Z]);
   .wait(2000);
   .get_service("general");
-  .get_medics
+  .get_medics.
 
 +myMedics([M1, M2]): team(200)
   <-
-  send(M1, tell, escuadron(1))
-  send(M2, tell, escuadron(2))
+  send(M1, tell, escuadron(1));
+  send(M2, tell, escuadron(2)).
   
   
 +enemies_in_fov(ID,Type,Angle,Distance,Health,Position): not shooting
@@ -44,7 +44,7 @@
   <-
   .print("Envio destino ", Ag, C);
   .send(Ag, tell, ir_a(C));
-  .send(Ag, tell, escuadron(1))
+  .send(Ag, tell, escuadron(1));
   -enviar_destinos(_);
   +enviar_destinos(L1, L2).
 
@@ -52,7 +52,7 @@
   <-
   .print("Envio destino ", Ag, C);
   .send(Ag, tell, ir_a(C));
-  .send(Ag, tell, escuadron(2))
+  .send(Ag, tell, escuadron(2));
   -enviar_destinos(_);
   +enviar_destinos(L1, L2).
 

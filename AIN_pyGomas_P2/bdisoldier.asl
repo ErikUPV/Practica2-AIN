@@ -64,13 +64,13 @@
 
 +escuadron1([Ag | L])
   <-
-  ?destination(D)
-  .send(Ag, tell, med_go(D))
+  ?destination(D);
+  .send(Ag, tell, med_go(D)).
 
 +escuadron2([Ag | L])
   <-
-  ?destination(D)
-  .send(Ag, tell, med_go(D))
+  ?destination(D);
+  .send(Ag, tell, med_go(D)).
 
 
 +target_reached: shooting

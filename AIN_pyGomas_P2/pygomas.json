@@ -31,20 +31,17 @@
             "rank": "BDISoldier",
             "name": "allied_ebellob",
             "password": "secret",
-            "amount": 8,
-            "asl": "bdisoldier.asl"
+            "amount": 8
         },
         {
             "rank": "BDIMedic",
             "name": "medic_allied_ebellob",
-            "password": "secret",
-            "asl": "bdimedic.asl"
+            "password": "secret"
         },
          {
             "rank": "BDIFieldOp",
             "name": "fieldop_allied_ebellob",
-            "password": "secret",
-            "asl": "bdifieldop.asl"
+            "password": "secret"
         }
    ]
   }
