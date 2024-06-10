@@ -35,6 +35,8 @@
   ?coordenadas_agentes(C);
   .wait(500);
   .print("Voy a enviar destinos", L, C);
+  .length(L,Pito);
+  .print(Pito);
   +enviar_destinos(L, C).
 
 

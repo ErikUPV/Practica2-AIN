@@ -1,0 +1,4 @@
+Crear dos canales para cada medico. (Uno para los que se quedan con la bandera y otro para los que patrullan)
+Si uno de los medicos se está mueriendo avisa de ello (10% de vida), y los soldados que acompañan a este medico, se registran
+en el canal del otro medico.
+Disparar.
