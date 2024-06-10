@@ -2,33 +2,49 @@
 
 +flag (F): team(200) 
   <-
-  .create_control_points(F,25,3,C);
-  +control_points(C);
-  .length(C,L);
-  +total_control_points(L);
-  +patrolling;
-  +patroll_point(0);
-  .print("Got control points").
+  ?position(Pos);
+  .goto(Pos);
+  +recibidos(0).
+
++escuadron(N): N = 1
+  <-
+  .register_service("escuadron1").
+
++escuadron(N): N = 2
+  <-
+  .register_service("escuadron2").
+
++med_go(Pos): recibidos(N) & N = 0
+  <-
+  .goto(Pos);
+  .wait(4000)
+  -+recibidos(0).
 
 
-+target_reached(T): patrolling & team(200) 
+
++ir_a(Pos)
+  <-
+  .print("Soy soldier, Voy a ", Pos);
+  +mi_destino(Pos);
+  +patrullando;
+  .goto(Pos).
+
++target_reached(T): patrullando & team(200) 
   <-
   .print("MEDPACK!");
   .cure;
-  ?patroll_point(P);
-  -+patroll_point(P+1);
-  -target_reached(T).
 
-+patroll_point(P): total_control_points(T) & P<T 
-  <-
-  ?control_points(C);
-  .nth(P,C,A);
-  .goto(A).
 
-+patroll_point(P): total_control_points(T) & P==T
-  <-
-  -patroll_point(P);
-  +patroll_point(0).
+// +patroll_point(P): total_control_points(T) & P<T 
+//   <-
+//   ?control_points(C);
+//   .nth(P,C,A);
+//   .goto(A).
+
+// +patroll_point(P): total_control_points(T) & P==T
+//   <-
+//   -patroll_point(P);
+//   +patroll_point(0).
 
 
 //TEAM_ALLIED 

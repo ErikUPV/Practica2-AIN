@@ -12,8 +12,8 @@
             "asl": "bdileader.asl"
         },
 		{
-            "rank": "agente.BDIMiSoldado",
-            "name": "axis_ebellob",
+            "rank": "agente.BDIMejor",
+            "name": "agente_axis_ebellob",
             "password": "secret",
             "amount": 8,
             "asl": "bdisoldier.asl"

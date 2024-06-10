@@ -28,9 +28,8 @@
 +target_reached(T): patrullando
   <-
 //  ?flag(F);
-//  .look_at(F)
-    ?flag(F);
-    .getBaseEnemiga(F, [X1,Y1,Z1]);
+//  .look_at(F).
+    .getBaseEnemiga(T,[X1,Y1,Z1]);
     +base_enemiga([X1,Y1,Z1]);
     ?position([X2,Y2,Z2]);
     .goto([X1,Y1,Z2]);
@@ -51,26 +50,6 @@
   +shooting.
 
 //  -+siguiendo(2000).
-
-+escuadron(N): N = 1
-  <-
-  .wait(3000);
-  .get_service("escuadron1").
-
-+escuadron(N): N = 2
-  <-
-  .wait(3000);
-  .get_service("escuadron1").
-
-+escuadron1([Ag | L])
-  <-
-  ?destination(D)
-  .send(Ag, tell, med_go(D))
-
-+escuadron2([Ag | L])
-  <-
-  ?destination(D)
-  .send(Ag, tell, med_go(D))
 
 
 +target_reached: shooting

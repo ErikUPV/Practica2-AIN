@@ -21,17 +21,17 @@ def distancia(x1,x2):
     return int(math.sqrt((x1[0]-x2[0])**2 + (x1[1]-x2[1])**2))
 
 
-class BDIMiSoldado(BDITroop):
+class BDIMejor(BDITroop):
 
       
       def add_custom_actions(self, actions):
         super().add_custom_actions(actions)
         
         @actions.add_function(".getBaseEnemiga",(tuple))
-        def _getBaseEnemiga(filler):
+        def _getBaseEnemiga(x):
             
-            
+            a = x
             baseEnemiga = (self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z())
-            return (baseEnemiga[0], 0, baseEnemiga[1])
+            return tuple(baseEnemiga[0], 0, baseEnemiga[1])
             
             
