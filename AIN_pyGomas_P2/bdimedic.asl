@@ -32,7 +32,7 @@
 +target_reached(T): patrullando & team(200) 
   <-
   .print("MEDPACK!");
-  .cure;
+  .cure.
 
 
 // +patroll_point(P): total_control_points(T) & P<T 
