@@ -17,7 +17,7 @@
 +med_go(Pos): recibidos(N) & N = 0
   <-
   .goto(Pos);
-  .wait(4000)
+  .wait(4000);
   -+recibidos(0).
 
 
