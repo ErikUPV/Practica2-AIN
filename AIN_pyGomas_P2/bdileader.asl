@@ -33,10 +33,11 @@
   +shooting;
   +siguiendo.
 
-+general(L): inicio
++general(L): inicio & not me_muero
   <-
   ?coordenadas_agentes(C);
   .wait(500);
+  -inicio;
   .print("Voy a enviar destinos", L, C);
   +enviar_destinos(L, C).
 
@@ -72,13 +73,13 @@
 
 +paquete_echado
   <-
-  .wait(10000);
+  .wait(3000);
   .reload;
   .print("Paquete de municion!");
   .get_service("general");
   -+paquete_echado.
 
-+general(L)
++general(L): not me_muero
   <-
   +enviar_info_paquetes(L).
 
@@ -95,6 +96,20 @@
   .shoot(3,Position);
   +shooting.
 
++health(H): H < 99
+  <-
+  +me_muero;
+  .get_service("escuadron2").
+
++escuadron2(L): me_muero
+  <-
+  .print("TODOS A BASE ENEMIGA");
+  +enviar_ir_a_base(L).
+
++enviar_ir_a_base([Ag | L ]): .length(L, Len) & Len > 0
+  <-
+  .send(Ag,tell,go_base_enemiga);
+  -+enviar_ir_a_base(L).
 
 
 

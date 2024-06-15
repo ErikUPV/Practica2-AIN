@@ -77,8 +77,8 @@ class BDILider(BDIFieldOp):
             posiciones_res.remove(posicion_lider)
 
 
-            coords = [(110, 0, 80),(110, 0, 150)]
-            
+        #    coords = [(110, 0, 80),(110, 0, 150)]
+            coords = [(220, 0, 50),(220, 0, 50),(220, 0, 50),(220, 0, 50),(220, 0, 50)]
             coords_res =[] 
             for coord in coords:
                 x,_,z = coord
@@ -92,8 +92,10 @@ class BDILider(BDIFieldOp):
                         parte1 = True
                 coords_res.append((x, 0, z))
 
-            coords_res += coords_res
-            coords_res.append(coords_res[0])
+            #coords_res += coords_res
+            
+         #   coords_res = [(220, 0, 50),(220, 0, 50),(220, 0, 50),(220, 0, 50),(220, 0, 50)]
+            #coords_res.append(coords_res[0])
             
             posiciones_res += coords_res
             posiciones_res.append(posicion_lider)
