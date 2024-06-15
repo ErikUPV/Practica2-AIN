@@ -53,6 +53,26 @@
   .look_at(B);
   +a_base_enemiga.
 
++ammo(A): A<20 & not patrullando
+  <-
+  .print("NECESITO AMMO");
+  +needammo.
+
++ammo(A): A = 0
+  <-
+  .print("NECESITO AMMO, TENGO 0");
+  +needammo.
+
++paquete_en(P): needammo
+  <-
+  goto(P);
+  print("VOY A POR PAQUETE").
+
++target_reached: needammo
+  <-
+  -needammo;
+  .getBaseEnemiga(F,B);
+  goto(B).
 
 
 +enemies_in_fov(ID,Type,Angle,Distance,Health,Position): soy_esc1
@@ -61,6 +81,13 @@
   .shoot(3,Position);
  // .print("DISPAROO!");
   +shooting.
+
++enemies_in_fov(ID,Type,Angle,Distance,Health,Position): flag_taken
+  <-
+  .getBaseEnemiga(F,B);
+  .goto(B);
+  .print("SIGUIENDO A LA BANDERA").
+
 
 //  -+siguiendo(2000).
 
@@ -84,8 +111,8 @@
 
 +escuadron2([Ag | L])
   <-
-
   ?mi_destino(D);
+  .wait(10000);
   .print("Soy escuadron 2 y voy a",D);  
   +soy_esc2;
   .send(Ag, tell, med_go(D)).

@@ -72,7 +72,7 @@
 
 +paquete_echado
   <-
-  .wait(5000);
+  .wait(10000);
   .reload;
   .print("Paquete de municion!");
   .get_service("general");

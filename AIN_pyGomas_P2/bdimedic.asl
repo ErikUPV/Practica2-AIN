@@ -24,7 +24,6 @@
   -+recibidos(0).
 
 
-
 +ir_a(Pos)
   <-
   .print("Soy Medic, Voy a ", Pos);
