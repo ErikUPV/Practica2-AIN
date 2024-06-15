@@ -29,10 +29,10 @@ class BDIMejor(BDITroop):
         
         @actions.add_function(".getBaseEnemiga",(tuple))
         def _getBaseEnemiga(x):
+            print("HOLAAAAA")
+            baseEnemiga = tuple([self.map.allied_base.get_init_x(),0,self.map.allied_base.get_init_z()])
             
-            a = x
-            baseEnemiga = [self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z()]
-            return (baseEnemiga[0], 0, baseEnemiga[1])
+            return baseEnemiga
         
         @actions.add_function(".randomPointAround",(tuple))
         def _randomPointAround(point):

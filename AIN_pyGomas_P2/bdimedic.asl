@@ -27,7 +27,7 @@
 
 +ir_a(Pos)
   <-
-  .print("Soy soldier, Voy a ", Pos);
+  .print("Soy Medic, Voy a ", Pos);
   +mi_destino(Pos);
   +patrullando;
   .goto(Pos).
