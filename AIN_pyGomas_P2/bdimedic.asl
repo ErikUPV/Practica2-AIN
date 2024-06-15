@@ -4,14 +4,17 @@
   <-
   ?position(Pos);
   .goto(Pos);
+  .register_service("medics");
   +recibidos(0).
 
 +escuadron(N): N = 1
   <-
+  .print("Soy escuadron MEDICO 1");
   .register_service("escuadron1").
 
 +escuadron(N): N = 2
   <-
+  .print("Soy escuadron MEDICO 2");
   .register_service("escuadron2").
 
 +med_go(Pos): recibidos(N) & N = 0

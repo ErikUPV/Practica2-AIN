@@ -48,7 +48,7 @@ class BDILider(BDITroop):
             contigua_siguiente = esquinas[(distancias.index(max(distancias))+1)%len(esquinas)]
             contigua_anterior = esquinas[(distancias.index(max(distancias))-1)%len(esquinas)]
                 
-            posiciones = [contigua_anterior,
+            posiciones = [
                           ((contigua_anterior[0]+start_point[0])/2, (contigua_anterior[1]+start_point[1])/2),
                           contigua_siguiente,   
                           ((contigua_siguiente[0]+start_point[0])/2, (contigua_siguiente[1]+start_point[1])/2),

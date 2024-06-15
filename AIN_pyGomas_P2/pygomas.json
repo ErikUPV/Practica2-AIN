@@ -15,13 +15,14 @@
             "rank": "agente.BDIMejor",
             "name": "agente_axis_ebellob",
             "password": "secret",
-            "amount": 8,
+            "amount": 7,
             "asl": "bdisoldier.asl"
         },
         {
             "rank": "BDIMedic",
             "name": "medic_axis_ebellob",
             "password": "secret",
+            "amount":2,
             "asl": "bdimedic.asl"
         }
          

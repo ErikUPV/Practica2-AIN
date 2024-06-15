@@ -31,7 +31,24 @@ class BDIMejor(BDITroop):
         def _getBaseEnemiga(x):
             
             a = x
-            baseEnemiga = (self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z())
-            return tuple(baseEnemiga[0], 0, baseEnemiga[1])
+            baseEnemiga = [self.map.allied_base.get_init_x(),self.map.allied_base.get_init_z()]
+            return (baseEnemiga[0], 0, baseEnemiga[1])
+        
+        @actions.add_function(".randomPointAround",(tuple))
+        def _randomPointAround(point):
+            x, y, z = point[0], point[1], point[2]
+            x_res = random.randrange(x - 5, x + 5)
+            z_res = random.randrange(z - 5, z + 5)
             
+            parte1 = True
+            while not self.map.can_walk(x_res, z_res):
+                    if parte1:
+                        x_res += 1
+                        parte1 = False
+                    else:
+                        z_res += 1
+                        parte1 = True
+                        
+            return (x_res, 0, z_res)
+           
             

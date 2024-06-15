@@ -25,22 +25,27 @@
   +patrullando;
   .goto(Pos).
 
-+target_reached(T): patrullando
++target_reached(T): patrullando & soy_esc2
+  <-
+  .getBaseEnemiga(F, B);
+  -patrullando;
+  .print("MIRO BASE ENEMIGA?", B);
+  .look_at(B).
+
++target_reached(T): patrullando & soy_esc1
   <-
 //  ?flag(F);
 //  .look_at(F)
-    ?flag(F);
-    .getBaseEnemiga(F, [X1,Y1,Z1]);
-    +base_enemiga([X1,Y1,Z1]);
-    ?position([X2,Y2,Z2]);
-    .goto([X1,Y1,Z2]);
-    -patrullando;
-    +a_base_enemiga.
+  .print("SOY ESC1 Y HE LLEGADO");
+  ?flag(F);
+  .getBaseEnemiga(F, B);
+  .randomPointAround(B, Point);
+  .goto(Point);
+  -patrullando;
+  .look_at(B);
+  +a_base_enemiga.
 
-+target_reached: a_base_enemiga
-  <-
-  ?base_enemiga(Pos);
-  look_at(Pos).
+
 
 +enemies_in_fov(ID,Type,Angle,Distance,Health,Position)
   <-
@@ -54,22 +59,26 @@
 
 +escuadron(N): N = 1
   <-
-  .wait(3000);
+  .wait(1000);
   .get_service("escuadron1").
 
 +escuadron(N): N = 2
   <-
-  .wait(3000);
-  .get_service("escuadron1").
+  .wait(1000);
+  .get_service("escuadron2").
 
 +escuadron1([Ag | L])
   <-
-  ?destination(D);
+  .print("Soy escuadron 1");
+  ?mi_destino(D);
+  +soy_esc1;
   .send(Ag, tell, med_go(D)).
 
 +escuadron2([Ag | L])
   <-
-  ?destination(D);
+  .print("Soy escuadron 2");
+  ?mi_destino(D);
+  +soy_esc2;
   .send(Ag, tell, med_go(D)).
 
 
@@ -120,7 +129,7 @@
   +returning;
   .goto(B);
   -exploring.
-
+  
 +heading(H): exploring
   <-
   .wait(2000);
